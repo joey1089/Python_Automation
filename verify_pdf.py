@@ -4,6 +4,8 @@ import platform
 import tkinter as tk
 from tkinter import filedialog
 import PyPDF2
+import pdfid
+# import peepdf  # install error - wheels for Pillow can't be installed nothing wrong with pip
 
 def scrn_clr():
     ''' Clears the current terminal screen! '''
@@ -41,9 +43,11 @@ def isFullPdf(f):
     return False
 
 def verify_pdf(file):
+    ''' verify if the given pdf file is contains malicious codes! '''
     try:
         with open(file_path, 'rb') as file:
-            PyPDF2.PdfReader(file)
+            PyPDF2.PdfReader(file)            
+            # peepdf
         return True
     except PyPDF2.utils.PdfReadError:
         return "Corrupted"
@@ -105,6 +109,15 @@ def detect_malicious_code(pdf_file):
 
 #---------------------------------
 # ------------------  pip install pdfid yara-python
+
+def check_pdf(file_path):
+    result = pdfid.PDFiD(file_path)
+    if result:
+        # Analyze the result for any suspicious indicators
+        # ...
+        return "Suspicious"
+    else:
+        return "Clean"
 
 scrn_clr()
 print("============================= PDF file complete or not! ===============================")
