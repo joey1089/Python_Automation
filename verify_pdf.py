@@ -1,6 +1,9 @@
 #Verify if the given PDF file is complete or not or its corrupt or clean
 import os
 import platform
+import tkinter as tk
+from tkinter import filedialog
+import PyPDF2
 
 def scrn_clr():
     ''' Clears the current terminal screen! '''
@@ -37,5 +40,19 @@ def isFullPdf(f):
         return True
     return False
 
+def verify_pdf(file):
+    try:
+        with open(file_path, 'rb') as file:
+            PyPDF2.PdfReader(file)
+        return True
+    except PyPDF2.utils.PdfReadError:
+        return "Corrupted"
+
 scrn_clr()
 print("============================= PDF file complete or not! ===============================")
+root = tk.Tk()
+root.withdraw()
+
+file_path = filedialog.askopenfilename(filetypes=[("PDF Files", "*.pdf")])
+print( "Check PDF is complete : ",isFullPdf(file_path))
+print( "Check PDF is clean : ",verify_pdf(file_path))
