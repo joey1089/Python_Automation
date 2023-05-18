@@ -1,6 +1,13 @@
 #Verify if the given PDF file is complete or not or its corrupt or clean
 import os
+import platform
 
+def scrn_clr():
+    ''' Clears the current terminal screen! '''
+    if platform.system() == 'Windows':
+        os.system('cls')
+    else:
+        os.system('clear')
 
 def isFullPdf(f):
     ''' Function to detect a pdf file is completed or not. '''
@@ -30,4 +37,5 @@ def isFullPdf(f):
         return True
     return False
 
+scrn_clr()
 print("============================= PDF file complete or not! ===============================")
