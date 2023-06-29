@@ -2,14 +2,14 @@ import time
 from threading import Thread
 
 def do_this():
-    print('Starting this!')
+    print('Starting this thread-001!')
     time.sleep(2)
-    print('Did this!')
+    print('Did this thread-001!')
 
 def do_that():
-    print('Starting that!')
+    print('Starting that thread-002!')
     time.sleep(3)
-    print('Did that!')
+    print('Did that thread-002!')
 
 
 t1 = Thread(target=do_this)
