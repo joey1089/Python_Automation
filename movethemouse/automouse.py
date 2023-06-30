@@ -1,5 +1,6 @@
 #reference - https://www.youtube.com/watch?v=ms42RwgAGKQ\
 #Use case for automation of desktop apps
+#status - not working as expected - code needs updates
 import pyautogui as pag
 import random
 import time
@@ -10,7 +11,7 @@ while True:
     if pag.position() == curr_coords:
         afk_counter += 1
     else:
-        afk_counter = 0
+        afk_counter = 0 
         curr_coords = pag.position()
     if afk_counter > 5:
         x = random.randint(450,750)
