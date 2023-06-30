@@ -6,6 +6,7 @@ from tkinter import filedialog
 import PyPDF2
 import pdfid
 # import peepdf  # install error - wheels for Pillow can't be installed nothing wrong with pip
+# these imports PyPDF2 and pdfid 
 
 def scrn_clr():
     ''' Clears the current terminal screen! '''
