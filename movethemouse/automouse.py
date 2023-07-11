@@ -16,9 +16,9 @@ while True:
     if afk_counter > 5:
         x = random.randint(450,750)
         y = random.randint(1,800)
-        pag.moveTo()
+        pag.moveTo(x,y)
         curr_coords = pag.position()
     print(f"AFK Counter: {afk_counter}")
-    time.sleep()
+    time.sleep(2)
 
 
