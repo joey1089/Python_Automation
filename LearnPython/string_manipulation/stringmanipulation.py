@@ -11,6 +11,18 @@ def are_reverses(string_1,string_2):
       return False
   return True
 
+def reverses_2(string_1,string_2):
+  if string_1 == string_2:
+    return "Given strings are equal",False
+  for str_1 in range(len(string_1)):
+    str_2 = len(string_2) - str_1 -1
+    if string_1[str_1] != string_2[str_2]:
+      return "Given strings are not equal",False
+  return "Given strings are equal",True
+  
+
+str_1 = "ABC"
+str_2 = "CBA"
 print('Are "ABC" and "CBA" reverses of each other? (should be True.)')
-print(are_reverses("ABC","CBA"))
-print(are_reverses("CBA","BAC"))
+print(f"Are they reverses of each other? : {are_reverses(str_1,str_2)}")
+print("Are 'CBA' and 'BAC' reverses of each other? (should be False.)",are_reverses("CBA","BAC"))
