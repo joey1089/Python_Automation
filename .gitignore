@@ -161,3 +161,6 @@ cython_debug/
 
 # Exclude the png files
 *.png
+
+# Exclude the vcode
+*.vscode
