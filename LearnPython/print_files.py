@@ -19,23 +19,28 @@ def list_out_files(directory='.'):
             else :
                 file_size = os.path.getsize(file_path)
                 file_info = {
-                    'file_name': file_name,
-                    'file_path': file_path,
-                    'file_size': str(file_size)
+                    'File_name': file_name,
+                    'Path': file_path,
+                    'File_size': str(file_size)
                 }
                 file_list.append(file_info)
                 
     return file_list
 
 file_list = list_out_files()
-# os.system('cls' if os.name == 'nt' else 'clear')
+os.system('cls' if os.name == 'nt' else 'clear')
 print("List of Files found in the current directories!")
-for file_info in file_list:
+for files in file_list:
     # Create an empty string
     str = ""    
     # Convert the dictionary keys into a string
     # using for loop only
-    for item in file_info:
-        str += item + ": " + file_info[item] + " | "
+    for item in files:
+        str += item + ": " + files[item] + " | "
         # print(type(str))
     print(str)
+# print("\n===========================================================")
+# for files in file_list:
+#     print(files)
+
+   
