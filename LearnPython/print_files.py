@@ -1,5 +1,5 @@
 # Quick way to find all the files in your current directory, ignores the git related files expect .gitignore
-
+import pandas
 import re
 import os
 
@@ -29,18 +29,15 @@ def list_out_files(directory='.'):
 
 file_list = list_out_files()
 os.system('cls' if os.name == 'nt' else 'clear')
-print("List of Files found in the current directories!")
-for files in file_list:
-    # Create an empty string
-    str = ""    
-    # Convert the dictionary keys into a string
-    # using for loop only
-    for item in files:
-        str += item + ": " + files[item] + " | "
-        # print(type(str))
-    print(str)
-# print("\n===========================================================")
+print("List of Files found in the current directories!\n")
 # for files in file_list:
-#     print(files)
-
-   
+#     file_info = "" #create a empty string to later store dict
+#     for item,value in files.items():
+#         file_info += item + ": " + value + " | "
+#     print(file_info)
+# print("\n =========================================================== \n")
+cols = [ "File_name", "File_Path", "File_size"]
+pd = pandas.DataFrame.from_dict(file_list)
+# pd = pandas.DataFrame.from_dict(file_list, orient='index', columns='cols') 
+#https://builtin.com/data-science/dictionary-to-dataframe
+print(pd)
