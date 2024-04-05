@@ -5,6 +5,7 @@ import os
 
 
 def list_out_files(directory='.'):
+    ''' List out the files in the current directory and the child directory too.'''
     file_list = []
     matches = ""
     for root, dirs, files in os.walk(directory):
@@ -27,20 +28,26 @@ def list_out_files(directory='.'):
                 
     return file_list
 
-file_list = list_out_files()
+# clear the screen and start the execution
 os.system('cls' if os.name == 'nt' else 'clear')
+file_list = list_out_files()
 print("List of Files found in the current directories!\n")
+print("List of Files from dictionary to string using for loop:-\n")
+
 for files in file_list:
-    file_info = "" #create a empty string to later store dict
+    file_info = "" #create a empty string to later store dictionary
     for item,value in files.items():
         file_info += item + ": " + value + " | "
     print(file_info)
 print("\n =========================================================== \n")
 # cols = [ "File_name", "File_Path", "File_size"]
+print(" List out Files with Panda DataFrame")
 pd = pandas.DataFrame.from_dict(file_list)
 # pd = pandas.DataFrame.from_dict(file_list, orient='index', columns='cols') 
 # https://builtin.com/data-science/dictionary-to-dataframe
 print(pd)
-print("\n ========================================== \n ")
+print("\n =========================================================== \n ")
+print(" List out Files with Panda DataFrame : Set Index as File name ")
 pd.set_index('File_Name', inplace=True)
 print(pd)
+print("\n")
