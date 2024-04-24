@@ -1,5 +1,6 @@
 # Quick way to find all the files in your current directory, ignores the git related files expect .gitignore
 import pandas
+import pprintpp as pp
 import re
 import os
 
@@ -28,26 +29,49 @@ def list_out_files(directory='.'):
                 
     return file_list
 
+def dict_str_loop(str_info):
+    ''' Prints out the dictionary using string through the for loop! '''
+    for files in file_list:            
+        for items in files:
+            str_info += items +": " + files[items] +" "
+        print(str_info)
+    return " "
+
+def pretty_print(print_info):
+    ''' Prints out dictionary using pretty print! '''
+    for item,value in file_list.items():
+        print_info += item + ": " + value + " | "
+        print(print_info)
+        pp.pprint(print_info) # with pretty print pprintpp
+    return " "
+
 # clear the screen and start the execution
 os.system('cls' if os.name == 'nt' else 'clear')
 file_list = list_out_files()
+file_info = "" #create a empty string to later store dictionary
 print("List of Files found in the current directories!\n")
-print("List of Files from dictionary to string using for loop:-\n")
-
-for files in file_list:
-    file_info = "" #create a empty string to later store dictionary
-    for item,value in files.items():
-        file_info += item + ": " + value + " | "
-    print(file_info)
 print("\n =========================================================== \n")
-# cols = [ "File_name", "File_Path", "File_size"]
-print(" List out Files with Panda DataFrame")
-pd = pandas.DataFrame.from_dict(file_list)
-# pd = pandas.DataFrame.from_dict(file_list, orient='index', columns='cols') 
-# https://builtin.com/data-science/dictionary-to-dataframe
-print(pd)
-print("\n =========================================================== \n ")
-print(" List out Files with Panda DataFrame : Set Index as File name ")
-pd.set_index('File_Name', inplace=True)
-print(pd)
-print("\n")
+user_input = input(str("List out using Dictionary using string enter '1' or Pretty Print '2' or Panda DataFrame '3': "))
+if user_input == '1':
+    print("List of Files from dictionary to string using for loop:-\n")
+    print(dict_str_loop(file_info))
+    
+elif user_input == '2':
+    print("Do you want to see using pretty print enter-'2' : ")
+    print("List of Files from dictionary using pretty print:-\n")
+    print(pretty_print(file_info))
+        
+else:
+    print("\n =========================================================== \n")
+    # cols = [ "File_name", "File_Path", "File_size"]
+    print(" List out Files with Panda DataFrame")
+    pd = pandas.DataFrame.from_dict(file_list)
+    # pd = pandas.DataFrame.from_dict(file_list, orient='index', columns='cols') 
+    # https://builtin.com/data-science/dictionary-to-dataframe
+    print(pd)
+    print("\n =========================================================== \n ")
+    print(" List out Files with Panda DataFrame : Set Index as File name ")
+    pd.set_index('File_Name', inplace=True)
+    print(pd)
+    print("\n")
+
